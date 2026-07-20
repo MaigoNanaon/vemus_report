@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VEMUS 未音 · 沉浸式产品体验报告</title>
+<style>
+  :root{
+    /* —— 严格取自 未音.pdf 的背景配色 —— */
+    --brand-deep:#6d1acb;     /* (109,26,203) 深紫 */
+    --brand:#995ef9;          /* (153,94,249) 主紫 */
+    --brand-soft:#b8a1f8;     /* (184,161,248) 柔紫 */
+    --lilac:#e4d2ff;          /* (228,210,255) 浅紫 */
+    --lilac-2:#dcd3ff;        /* (220,211,255) 浅紫2 */
+    --mist:#f6f6f6;           /* (246,246,246) 灰白 */
+    --ink:#53585f;            /* (83,88,95) 深灰文字 */
+    --gray:#929292;           /* (146,146,146) 中灰 */
+    --white:#ffffff;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei",-apple-system,sans-serif;
+    color:var(--ink);
+    background:var(--mist);
+    line-height:1.85;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1080px;margin:0 auto;padding:0 28px;}
+
+  /* ===== 顶部 HERO ===== */
+  .hero{
+    background:
+      radial-gradient(1200px 600px at 80% -10%, rgba(153,94,249,.35), transparent 60%),
+      linear-gradient(135deg, var(--brand-deep) 0%, var(--brand) 55%, var(--brand-soft) 130%);
+    color:#fff;
+    padding:88px 0 72px;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero::after{
+    content:"";position:absolute;right:-80px;bottom:-120px;width:380px;height:380px;
+    background:radial-gradient(circle,rgba(228,210,255,.5),transparent 70%);border-radius:50%;
+  }
+  .hero .wrap{position:relative;z-index:2;}
+  .badge{
+    display:inline-block;font-size:13px;letter-spacing:2px;text-transform:uppercase;
+    background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.35);
+    padding:6px 16px;border-radius:999px;backdrop-filter:blur(6px);margin-bottom:22px;
+  }
+  .hero h1{font-size:48px;font-weight:800;letter-spacing:1px;line-height:1.15;margin-bottom:14px;}
+  .hero h1 small{display:block;font-size:18px;font-weight:400;opacity:.85;margin-top:8px;letter-spacing:3px;}
+  .hero p.sub{font-size:16px;opacity:.9;max-width:680px;margin-top:18px;}
+  .meta-row{display:flex;flex-wrap:wrap;gap:14px;margin-top:30px;}
+  .meta-row .chip{
+    background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);
+    padding:8px 16px;border-radius:10px;font-size:13.5px;
+  }
+  .meta-row .chip b{font-weight:600;}
+
+  /* ===== 章节通用 ===== */
+  section{padding:64px 0;border-bottom:1px solid rgba(146,146,146,.18);}
+  section:last-of-type{border-bottom:none;}
+  .sec-tag{font-size:13px;color:var(--brand);font-weight:700;letter-spacing:3px;text-transform:uppercase;}
+  h2{font-size:32px;font-weight:800;color:var(--ink);margin:10px 0 8px;letter-spacing:.5px;}
+  .sec-lead{color:var(--gray);font-size:15.5px;max-width:760px;margin-bottom:34px;}
+  h3{font-size:20px;font-weight:700;color:var(--brand-deep);margin:30px 0 12px;}
+  p{font-size:15.5px;color:var(--ink);margin-bottom:14px;}
+  ul,ol{margin:0 0 16px 22px;}
+  li{font-size:15.5px;margin-bottom:8px;color:var(--ink);}
+  li b, p b{color:var(--brand-deep);}
+
+  /* ===== 卡片网格 ===== */
+  .grid{display:grid;gap:20px;}
+  .grid.c3{grid-template-columns:repeat(3,1fr);}
+  .grid.c2{grid-template-columns:repeat(2,1fr);}
+  @media(max-width:820px){.grid.c3,.grid.c2{grid-template-columns:1fr;}}
+  .card{
+    background:var(--white);border:1px solid var(--lilac);border-radius:16px;padding:24px 22px;
+    box-shadow:0 6px 24px rgba(109,26,203,.06);transition:.25s;
+  }
+  .card:hover{transform:translateY(-4px);box-shadow:0 14px 34px rgba(109,26,203,.14);border-color:var(--brand-soft);}
+  .card .ic{
+    width:46px;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;
+    font-size:22px;background:linear-gradient(135deg,var(--lilac),var(--brand-soft));margin-bottom:14px;
+  }
+  .card h4{font-size:17px;color:var(--brand-deep);margin-bottom:8px;font-weight:700;}
+  .card p{font-size:14.5px;color:var(--gray);margin:0;}
+
+  /* ===== 流程步骤 ===== */
+  .flow{display:flex;flex-wrap:wrap;gap:14px;margin-top:10px;}
+  .flow .step{
+    flex:1 1 150px;background:var(--lilac);border-radius:14px;padding:18px 16px;position:relative;
+    border:1px solid var(--brand-soft);
+  }
+  .flow .step .n{
+    position:absolute;top:-12px;left:16px;width:30px;height:30px;border-radius:50%;
+    background:linear-gradient(135deg,var(--brand),var(--brand-deep));color:#fff;
+    display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;
+  }
+  .flow .step h5{font-size:15px;color:var(--brand-deep);margin:8px 0 6px;font-weight:700;}
+  .flow .step p{font-size:13.5px;color:var(--ink);margin:0;}
+
+  /* ===== 表格 ===== */
+  .tbl-wrap{border:1px solid var(--lilac);border-radius:16px;overflow:hidden;box-shadow:0 6px 24px rgba(109,26,203,.06);}
+  table{width:100%;border-collapse:collapse;font-size:14.5px;}
+  thead th{
+    background:linear-gradient(135deg,var(--brand-deep),var(--brand));color:#fff;text-align:left;
+    padding:14px 18px;font-weight:600;letter-spacing:.5px;
+  }
+  tbody td{padding:13px 18px;border-top:1px solid var(--lilac);color:var(--ink);vertical-align:top;}
+  tbody tr:nth-child(even){background:var(--mist);}
+  tbody td b{color:var(--brand-deep);}
+  .pill{display:inline-block;padding:2px 10px;border-radius:999px;font-size:12.5px;font-weight:600;
+    background:var(--lilac);color:var(--brand-deep);}
+
+  /* ===== 评分条 ===== */
+  .scores{display:grid;gap:14px;}
+  .score{display:grid;grid-template-columns:160px 1fr 110px;align-items:center;gap:16px;}
+  .score .lab{font-size:15px;font-weight:600;color:var(--ink);}
+  .bar{height:10px;background:var(--lilac);border-radius:999px;overflow:hidden;}
+  .bar i{display:block;height:100%;background:linear-gradient(90deg,var(--brand-soft),var(--brand));border-radius:999px;}
+  .score .val{font-size:14px;color:var(--brand-deep);font-weight:700;text-align:right;}
+  @media(max-width:680px){.score{grid-template-columns:110px 1fr;}.score .val{grid-column:2;text-align:left;}}
+
+  /* ===== 调用框 ===== */
+  .callout{
+    border-left:5px solid var(--brand);background:linear-gradient(90deg,var(--lilac),var(--mist));
+    padding:22px 24px;border-radius:0 14px 14px 0;margin:24px 0;
+  }
+  .callout .t{font-weight:700;color:var(--brand-deep);margin-bottom:8px;font-size:16px;}
+  .callout p{margin:0;color:var(--ink);font-size:15px;}
+
+  .scenario-box{
+    background:var(--white);border:1px solid var(--lilac);border-radius:16px;padding:26px 26px;
+    box-shadow:0 6px 24px rgba(109,26,203,.06);
+  }
+  .scenario-box .who{font-size:13px;color:var(--brand);font-weight:700;letter-spacing:1px;}
+
+  /* ===== 页脚 ===== */
+  footer{background:linear-gradient(135deg,var(--brand-deep),var(--brand));color:#fff;padding:46px 0;text-align:center;}
+  footer p{color:rgba(255,255,255,.9);font-size:14px;margin:6px 0;}
+  footer .big{font-size:18px;font-weight:700;letter-spacing:1px;}
+
+  .toc{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px;}
+  .toc a{
+    text-decoration:none;font-size:14px;color:var(--brand-deep);background:var(--lilac);
+    padding:8px 16px;border-radius:999px;border:1px solid var(--brand-soft);transition:.2s;
+  }
+  .toc a:hover{background:var(--brand);color:#fff;}
+
+  /* ===== 截图展示（PDF 原图） ===== */
+  .img-showcase{margin:28px 0;display:grid;gap:20px;}
+  .img-row{display:flex;flex-wrap:wrap;gap:16px;align-items:start;justify-content:center;}
+  .img-wrap{
+    background:#fff;border-radius:14px;padding:10px;
+    box-shadow:0 6px 24px rgba(109,26,203,.08);border:1px solid var(--lilac);
+    max-width:100%;overflow:hidden;
+  }
+  .img-wrap img{display:block;width:auto;max-width:420px;height:auto;border-radius:8px;}
+  .img-caption{text-align:center;font-size:12.5px;color:var(--gray);margin-top:6px;font-style:italic;}
+  .pdf-source-tag{
+    display:inline-flex;align-items:center;gap:5px;
+    font-size:11.5px;background:rgba(153,94,249,.1);color:var(--brand-deep);
+    padding:3px 10px;border-radius:999px;font-weight:600;margin-bottom:4px;border:1px dashed var(--brand-soft);
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <div class="wrap">
+    <span class="badge">Tencent Music · VEMUS 未音</span>
+    <h1>未音沉浸式产品体验报告
+      <small>VEMUS 未音 · AI 音乐创作与演唱平台</small>
+    </h1>
+    <p class="sub">本报告融合「平台整体综合体验」「AI 作歌功能实测」「AI 唱歌功能实测」三条主线，从定位、流程、亮点、问题到优化方案，给出一份完整、高级、可落地的产品体验洞察。</p>
+    <div class="meta-row">
+      <div class="chip"><b>体验对象</b> · 腾讯音乐 VEMUS 未音</div>
+      <div class="chip"><b>入口</b> · y.qq.com/vemus</div>
+      <div class="chip"><b>体验时间</b> · 2026-07-20</div>
+      <div class="chip"><b>形态</b> · Web / Android / iOS</div>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <!-- 目录 -->
+  <section style="padding:40px 0 30px;">
+    <div class="toc">
+      <a href="#s1">01 平台定位</a>
+      <a href="#s2">02 体验流程</a>
+      <a href="#s3">03 AI 作歌实测</a>
+      <a href="#s4">04 AI 唱歌实测</a>
+      <a href="#s5">05 优点</a>
+      <a href="#s6">06 局限</a>
+      <a href="#s7">07 综合评分</a>
+      <a href="#s8">08 建议</a>
+    </div>
+  </section>
+
+  <!-- ============ 01 平台定位 ============ -->
+  <section id="s1">
+    <div class="sec-tag">Section 01</div>
+    <h2>平台定位与核心能力</h2>
+    <p class="sec-lead">VEMUS 未音由广州酷狗计算机科技有限公司（腾讯音乐旗下）开发，于 2025-12-23 开启全网内测，定位为「一站式 AI 音乐创作发行平台」，主打 <b>听歌 / 作歌 / 唱歌</b> 三大音乐日常。</p>
+
+    <div class="grid c2">
+      <div class="card">
+        <div class="ic">🎼</div>
+        <h4>一站式 AI 作歌</h4>
+        <p>聊天即生成音乐，支持灵感作歌 / 定制歌词 / 图片作歌 / 纯音乐创作，一键完成完整词曲编唱。</p>
+      </div>
+      <div class="card">
+        <div class="ic">🎨</div>
+        <h4>音乐灵感画布</h4>
+        <p>把歌词片段、曲风灵感留在 AI 画布中，帮助整理、联想、延展，沉淀专属个人灵感库。</p>
+      </div>
+      <div class="card">
+        <div class="ic">🚀</div>
+        <h4>一键发行歌曲</h4>
+        <p>生成作品可一键发行至 QQ音乐、酷狗音乐、酷我音乐、全民K歌、JOOX 五大平台。</p>
+      </div>
+      <div class="card">
+        <div class="ic">🛠️</div>
+        <h4>智能音乐工具</h4>
+        <p>母带、分轨、MIDI、曲谱等 AI 后期工具，显著降低音乐创作的技术门槛。</p>
+      </div>
+    </div>
+
+    <h3>三大核心体验（官方 2026-04 宣传口径）</h3>
+    <ul>
+      <li><b>🎧 百万首 AI 歌曲库</b>：免费无限畅听、无广告、全风格覆盖。</li>
+      <li><b>🎹 AI 作歌</b>：对话作歌 / 灵感歌词作歌 / 图片作歌。</li>
+      <li><b>🎤 AI 唱歌</b>：用自身音色唱热歌，秒变「专业歌手」，一键分享朋友圈。</li>
+    </ul>
+
+    <div class="callout">
+      <div class="t">进阶玩法速览</div>
+      <p>多模态生成（对话 / 关键词情绪标签 / 粘贴文本 / 上传图片 4 种入口）；独家 <b>Remix</b> 一键风格转换（抒情→说唱）、男声→女声、上传哼唱生成伴奏、实时风格迁移；社区生态含作品发布、二创接龙、热歌排行；几秒内生成 44.1kHz 高清音质，支持分享至朋友圈 / 小红书 / TikTok；风格覆盖流行、民谣、摇滚、电子、说唱、国风、金属等。</p>
+    </div>
+  </section>
+
+  <!-- ============ 02 体验流程 ============ -->
+  <section id="s2">
+    <div class="sec-tag">Section 02</div>
+    <h2>沉浸式体验流程（模拟用户路径）</h2>
+    <p class="sec-lead">从注册到社区涨粉，未音构建了一条完整的「创作—发行—变现」闭环路径。</p>
+    <div class="flow">
+      <div class="step"><span class="n">1</span><h5>注册登录</h5><p>新人送积分（免费额度），可对话 / 上传图片开始创作</p></div>
+      <div class="step"><span class="n">2</span><h5>灵感沉淀</h5><p>在「音乐灵感画布」记录歌词碎片、曲风关键词</p></div>
+      <div class="step"><span class="n">3</span><h5>AI 生成</h5><p>选对话/灵感/填词/图片模式，几秒~30秒生成完整作品</p></div>
+      <div class="step"><span class="n">4</span><h5>后期精修</h5><p>母带、分轨、MIDI/曲谱，或 Remix 换风格/换声线</p></div>
+      <div class="step"><span class="n">5</span><h5>发行分享</h5><p>一键发 5 大平台；或用自音色翻唱热歌分享社交</p></div>
+      <div class="step"><span class="n">6</span><h5>社区互动</h5><p>发布作品、二创接龙、排行榜涨粉，会员可商用变现</p></div>
+    </div>
+  </section>
+
+  <!-- ============ 03 AI 作歌实测 ============ -->
+  <section id="s3">
+    <div class="sec-tag">Section 03</div>
+    <h2>AI 作歌功能实测：世界杯场景</h2>
+    <p class="sec-lead">以「为世界杯创作专属应援曲」为场景，完整体验未音的对话作歌链路。以下内容来自 <b>DOCX 实测报告 + PDF 界面截图</b>。
+
+    <div class="scenario-box">
+      <div class="who">体验场景</div>
+      <p>到了世界杯前夜，氛围越来越浓厚，想配上一首独属于自己的世界杯歌曲，吃着小串喝着小酒、听着音乐沉浸式追球。于是打开未音 App，想要创造一首符合当下心情的歌曲。</p>
+      <p>界面非常简约大气，有个对话框可以输入作歌灵感，AI 会先根据灵感生成歌词；若无灵感，对话框下方也有提示信息，往往能顺势激发灵感。歌词可反复修改——例如想增加西班牙元素、亚马尔、罗德里等巨星，便要求 AI 重新修改，直至满意。</p>
+    </div>
+
+    <!-- PDF 原图：首页/主界面 -->
+    <span class="pdf-source-tag">📄 来自《未音.pdf》原始界面截图</span>
+    <div class="img-showcase">
+      <div class="img-row">
+        <div class="img-wrap"><img src="vemus_report_assets/p1_0.png" alt="未音 App 首页"></div>
+      </div>
+    </div>
+
+    <h3>🌟 亮点分析</h3>
+    <ul>
+      <li><b>极简交互</b>：对话框式灵感输入，先生成歌词再进入作曲，节奏顺畅、零门槛。</li>
+      <li><b>风格选择惊艳</b>：提供热血华语流行、流行摇滚、史诗体育摇滚等曲风，且每种都附有通俗描述，音乐小白也能精准选中最想要的一款。</li>
+      <li><b>双音色交付</b>：生成完成后系统输出两个 MP4 文件，由两种不同音色演绎同一首歌，用户可凭喜好挑选下载，既贴心又实用。</li>
+    </ul>
+
+    <h3>⚠️ 问题诊断</h3>
+    <ul>
+      <li><b>指令识别敏感度不足</b>：结合历史对话修改歌词时，AI 往往会刻意突出输入的指令词，导致歌词生硬、甚至直接替换原有词语，造成语句不通，需反复调整。</li>
+      <li><b>付费节点不友好</b>：费尽心力完成歌词和曲风选择后，才弹出提示需 100 代币才能继续生成。若余额不足，半路收费易带来挫败感、影响创作兴致。</li>
+    </ul>
+
+    <h3>💡 优化方案</h3>
+    <ul>
+      <li><b>指令敏感度</b>：歌词修改环节引入「<b>微调</b>」与「<b>重写</b>」两种模式——微调仅局部润色指定词句，不强行替换整句；重写允许更大范围改写。增加「风格强度」滑块（如明星浓度、地域色彩），并以数值控制元素占比。历史对话可做语义权重标记，使新指令更自然融合上下文。</li>
+      <li><b>付费节点</b>：将代币消耗提示前置至生成歌词之前，或在起始页标注完整流程所需代币总数。更优做法是提供「<b>试听片段</b>」功能——先免费生成 30 秒副歌样章，确认满意后再付费解锁完整歌曲，既降决策门槛也提升付费意愿。</li>
+    </ul>
+  </section>
+
+  <!-- ============ 04 AI 唱歌实测 ============ -->
+  <section id="s4">
+    <div class="sec-tag">Section 04</div>
+    <h2>AI 唱歌功能实测 ⭐ 核心章节</h2>
+    <p class="sec-lead"><b style="color:var(--brand-deep)">本章节重点呈现《未音.pdf》的完整 AI 唱歌功能体验内容</b>，涵盖场景、亮点、问题与优化方案，配合原始界面截图逐页还原。</p>
+
+    <!-- ===== 场景（PDF Page 2） ===== -->
+    <h3>🎤 01 · 用户使用场景</h3>
+    <span class="pdf-source-tag">📄 来自《未音.pdf》Page 2 — 场景 + 首页截图</span>
+
+    <div class="img-showcase">
+      <div class="img-row">
+        <div class="img-wrap"><img src="vemus_report_assets/p2_0.png" alt="AI唱首页-导航栏/歌曲列表/音色选择"></div>
+      </div>
+      <p class="img-caption">未音「AI 唱」功能首页：写歌/唱歌双 Tab 切换 · 我的音色管理 · 待选择歌曲 · 歌曲列表网格展示</p>
+    </div>
+
+    <ul>
+      <li><b>好奇驱动</b>：个人音色与不同歌曲碰撞，听自己「唱」出任何风格。</li>
+      <li><b>热门歌曲一键跟唱</b>：用自音色翻唱热歌，秒变专业歌手。</li>
+      <li><b>社交互动</b>：搞怪配音挑战等趣味玩法。</li>
+      <li><b>自媒体配乐</b>：快速生成个性化 BGM（如「OMG 你吓到我了～～」）。</li>
+      <li><b>无痛跨越语言/方言障碍</b>：以熟悉音色演绎外语或方言歌曲。</li>
+    </ul>
+
+    <!-- ===== 亮点（PDF Page 3） ===== -->
+    <h3>🌟 02 · 亮点分析</h3>
+    <span class="pdf-source-tag">📄 来自《未音.pdf》Page 3 — 二级页面试听功能</span>
+
+    <div class="img-showcase">
+      <div class="img-row">
+        <div class="img-wrap"><img src="vemus_report_assets/p4_2.png" alt="二级页面试听-热搜榜/情歌榜"></div>
+        <div class="img-wrap"><img src="vemus_report_assets/p6_1.png" alt="AI唱主页-综合/热歌/挑战"></div>
+      </div>
+      <p class="img-caption">左：二级页面「猜你喜欢」热搜榜 / 情歌榜，每首歌曲均配有试听和 AI 唱入口<br>右：一级页面综合推荐区，含人名榜 / 热歌 / 挑战大头针高音等分类</p>
+    </div>
+
+    <div class="callout">
+      <div class="t">核心亮点：3 秒内快速听到自己克隆音色的演唱效果 💜</div>
+      <p>低体验成本带来高体验感受。用户进入二级页即可快速预览 AI 唱效果，大幅缩短决策链路。建议在一级页面推荐曲目上也增设一键试唱入口。</p>
+    </div>
+
+    <div class="grid c2">
+      <div class="card">
+        <div class="ic">⚡</div>
+        <h4>3 秒快速试唱</h4>
+        <p>二级页面试听功能，3 秒内即可听到克隆音色与歌曲高潮/副歌的融合效果。</p>
+      </div>
+      <div class="card">
+        <div class="ic">🧭</div>
+        <h4>清晰的功能分区</h4>
+        <p>导航栏（写歌/唱歌）、我的音色选择、待选择歌曲、歌曲列表模块层次分明。</p>
+      </div>
+    </div>
+
+    <!-- ===== 问题 A（PDF Page 4） ===== -->
+    <h3>⚠️ 03 · 问题诊断 A：跳转断点</h3>
+    <span class="pdf-source-tag">📄 来自《未音.pdf》Page 4 — 问题页</span>
+
+    <div class="img-showcase">
+      <div class="img-row">
+        <div class="img-wrap"><img src="vemus_report_assets/p5_0.png" alt="问题页-跳转断点"></div>
+      </div>
+      <p class="img-caption">问题页设计示意：用户点击「AI 唱制作」后无自动跳转反馈，需手动返回确认</p>
+    </div>
+
+    <ul>
+      <li><b>跳转断点</b>：用户在二级页面选择歌曲并点击「AI 唱制作」后，并不会主动跳转至制作主页面，需手动返回确认，链路存在断层。</li>
+    </ul>
+
+    <!-- ===== 方案 A（PDF Page 5） ===== -->
+    <h3>💡 04 · 优化方案 A：弹窗引导</h3>
+    <span class="pdf-source-tag">📄 来自《未音.pdf》Page 5 — 方案页</span>
+
+    <div class="img-showcase">
+      <div class="img-row">
+        <div class="img-wrap"><img src="vemus_report_assets/p7_0.png" alt="方案页-弹窗提示"></div>
+      </div>
+      <p class="img-caption">方案设计：点击制作后弹出引导弹窗 —— 「所选歌曲已进入生成队列… 返回 AI 唱 / 继续添加歌曲」</p>
+    </div>
+
+    <ul>
+      <li><b>制作弹窗提示</b>：可增设弹窗——「所选歌曲《XXX》已进入生成队列…」，给出「返回 AI 唱 or 继续添加歌曲」明确选择。</li>
+    </ul>
+
+    <!-- ===== 问题 B（PDF Page 6） ===== -->
+    <h3>⚠️ 05 · 问题诊断 B：导航类目稀疏</h3>
+    <span class="pdf-source-tag">📄 来自《未音.pdf》Page 6 — 导航问题页</span>
+
+    <div class="img-showcase">
+      <div class="img-row">
+        <div class="img-wrap"><img src="vemus_report_assets/p8_2.png" alt="导航问题-默认公开"></div>
+      </div>
+      <p class="img-caption">当前问题：导航类目较少较散，缺少精准对应用户的个性化推荐；且生成后默认公开</p>
+    </div>
+
+    <ul>
+      <li><b>导航类目稀疏</b>：现有导航栏类目较少、较散，缺少精准对应用户的个性化推荐。</li>
+      <li><b>默认公开引发顾虑</b>：用户歌曲生成后默认为公开作品，缺少事前告知与选择。</li>
+    </ul>
+
+    <!-- ===== 方案 B（PDF Page 7） ===== -->
+    <h3>💡 06 · 优化方案 B：双层级索引 & 公开策略</h3>
+    <span class="pdf-source-tag">📄 来自《未音.pdf》Page 7 — 双层导航方案</span>
+
+    <div class="callout">
+      <div class="t">方案核心：双层级索引栏 + 公开询问机制</div>
+      <p><b>双层级索引</b>：大类型下细分更多专题，并与主站/其他音乐平台绑定联动。<br>
+         推荐专题：<br>
+         · 热歌榜单 / 限时专题 / 个性推荐<br>
+         · #近日常听 · #你的喜欢 · #热榜100 · #流行经典 · #强势新歌<br>
+         · #挑战大头针高音 #夏天🍉<br>
+         · #收藏歌单 #猜你喜欢<br><br>
+         <b>公开策略</b>：生成后增设询问弹窗（公开 or 私密）/ 设置草稿箱；设为公开后可进一步提示「分享至站外平台可获得推流」。
+      </p>
+    </ul>
+  </section>
+
+  <!-- ============ 05 优点 ============ -->
+  <section id="s5">
+    <div class="sec-tag">Section 05</div>
+    <h2>优点（Pros）</h2>
+    <p class="sec-lead">综合三份报告，核心优势集中在中文专精、生态闭环、零门槛与高性价比四个维度。</p>
+    <div class="grid c2">
+      <div class="card">
+        <div class="ic">🇨🇳</div>
+        <h4>中文创作专精</h4>
+        <p>深度理解中国文化语境，中文歌词质量远超 Suno 等国际竞品。</p>
+      </div>
+      <div class="card">
+        <div class="ic">♻️</div>
+        <h4>腾讯生态闭环</h4>
+        <p>「创作→5大平台发行→版权收益」闭环，竞品难以复制。</p>
+      </div>
+      <div class="card">
+        <div class="ic">⚡</div>
+        <h4>零门槛 + 快速出歌</h4>
+        <p>对话/图片即生成完整词曲编唱，几秒~30秒，44.1kHz 商业标准。</p>
+      </div>
+      <div class="card">
+        <div class="ic">💰</div>
+        <h4>超高性价比</h4>
+        <p>免费+积分制；会员 49元/月起，远低于 Suno($10)/Udio($30)。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 06 局限 ============ -->
+  <section id="s6">
+    <div class="sec-tag">Section 06</div>
+    <h2>缺点 / 局限（Cons）</h2>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th style="width:22%">维度</th><th>说明</th></tr></thead>
+        <tbody>
+          <tr><td><b>仍处内测、有门槛</b></td><td>早期需邀请码（问卷获取），未获码仅能浏览公开内容，普及度受限。</td></tr>
+          <tr><td><b>无独立桌面版</b></td><td>无 PC 客户端，电脑创作需借模拟器，Web 端为 SPA、重度依赖 JS。</td></tr>
+          <tr><td><b>英文创作偏弱</b></td><td>中文专精的代价是英文创作非强项，对比 Suno / Udio 有差距。</td></tr>
+          <tr><td><b>古典/极致音质不占优</b></td><td>极端高保真古典创作不如 AIVA 类专业工具。</td></tr>
+          <tr><td><b>免费版商用受限</b></td><td>免费生成作品可能有使用限制，商用需会员授权，需关注最新政策。</td></tr>
+          <tr><td><b>行业版权大环境争议</b></td><td>AI 音乐训练数据、生成物版权仍处法律灰色地带，存在诉讼/合规风险。</td></tr>
+          <tr><td><b>人声合成透明度低</b></td><td>官方强调「唱歌/演唱」但未公开是否支持音色克隆、虚拟歌手等技术细节，规则不透明。</td></tr>
+          <tr><td><b>分成规则不透明</b></td><td>发行到 QQ音乐等后收益分配、结算方式未在公开页面披露，需查《用户协议》。</td></tr>
+          <tr><td><b>指令识别敏感度</b></td><td>结合历史对话修改歌词时 AI 易生硬突出指令词，语句通顺度待提升（作歌实测）。</td></tr>
+          <tr><td><b>付费节点突兀</b></td><td>歌词与曲风选择完成后才提示消耗代币，半路收费影响创作兴致（作歌实测）。</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ============ 07 综合评分 ============ -->
+  <section id="s7">
+    <div class="sec-tag">Section 07</div>
+    <h2>综合评分</h2>
+    <div class="scores">
+      <div class="score"><span class="lab">易用性</span><span class="bar"><i style="width:100%"></i></span><span class="val">★★★★★</span></div>
+      <div class="score"><span class="lab">中文歌词 / 音质</span><span class="bar"><i style="width:95%"></i></span><span class="val">★★★★☆</span></div>
+      <div class="score"><span class="lab">生态与性价比</span><span class="bar"><i style="width:100%"></i></span><span class="val">★★★★★</span></div>
+      <div class="score"><span class="lab">功能完整度</span><span class="bar"><i style="width:78%"></i></span><span class="val">★★★★☆</span></div>
+    </div>
+    <div class="callout">
+      <div class="t">总体印象</div>
+      <p>VEMUS 未音是目前国内体验最顺滑的 AI 音乐一站式平台，尤其在「中文歌词 + 腾讯发行闭环」上形成护城河。短板：桌面端缺失、英文/古典偏弱、版权透明度待提升。<b style="color:var(--brand-deep)">AI 唱歌功能（PDF 核心内容）是差异化亮点，但跳转链路、导航推荐、公开策略三项需优先优化。</b></p>
+    </div>
+  </section>
+
+  <!-- ============ 08 建议 ============ -->
+  <section id="s8">
+    <div class="sec-tag">Section 08</div>
+    <h2>体验建议</h2>
+    <div class="grid c2">
+      <div class="card">
+        <div class="ic">🎁</div>
+        <h4>快速出歌</h4>
+        <p>想快速出歌送礼 / 做 vlog BGM：直接用「对话作歌」「图片作歌」，几秒出片。</p>
+      </div>
+      <div class="card">
+        <div class="ic">🎛️</div>
+        <h4>风格实验</h4>
+        <p>想玩风格实验：用 Remix 把抒情改电音、男声改女声，可玩性极高。</p>
+      </div>
+      <div class="card">
+        <div class="ic">💿</div>
+        <h4>认真创作并发行</h4>
+        <p>先用灵感画布沉淀，再生成 + 母带分轨精修，会员解锁商用授权。</p>
+      </div>
+      <div class="card">
+        <div class="ic">⚖️</div>
+        <h4>合规提醒</h4>
+        <p>电脑端建议用手机或模拟器获得完整体验；商用前务必查阅最新《用户协议》确认版权与分成。</p>
+      </div>
+    </div>
+    <div class="callout">
+      <div class="t">价值判断</div>
+      <p>未音以极简交互降低了音乐创作的门槛，让每个人都能轻松拥有个性化歌曲，氛围感与趣味性都很不错。若能优化指令理解精度、付费透明度（作歌侧），以及补全跳转链路、个性化导航与公开策略（唱歌侧），产品将更具竞争力，成为日常情绪表达与节日仪式感的有力载体。</p>
+    </div>
+  </section>
+</div>
+
+<!-- ============ 页脚 ============ -->
+<footer>
+  <p class="big">VEMUS 未音 · 沉浸式产品体验报告</p>
+  <p>融合来源：平台综合体验报告（MD） · AI 作歌场景实测（DOCX） · AI 唱歌功能体验（PDF）</p>
+  <p>配色严格取自《未音.pdf》品牌紫色系 · 体验时间 2026-07-20</p>
+</footer>
+
+</body>
+</html>
