@@ -157,7 +157,7 @@
     box-shadow:0 6px 24px rgba(109,26,203,.08);border:1px solid var(--lilac);
     max-width:100%;overflow:hidden;
   }
-  .img-wrap img{display:block;width:auto;max-width:420px;height:auto;border-radius:8px;}
+  .img-wrap img{display:block;width:auto;max-width:588px;height:auto;border-radius:8px;}
   .img-caption{text-align:center;font-size:12.5px;color:var(--gray);margin-top:6px;font-style:italic;}
   .pdf-source-tag{
     display:inline-flex;align-items:center;gap:5px;
@@ -175,7 +175,7 @@
     <h1>未音沉浸式产品体验报告
       <small>VEMUS 未音 · AI 音乐创作与演唱平台</small>
     </h1>
-    <p class="sub">本报告融合「平台整体综合体验」「AI 作歌功能实测」「AI 唱歌功能实测」三条主线，从定位、流程、亮点、问题到优化方案，给出一份完整、高级、可落地的产品体验洞察。</p>
+    <p class="sub">本报告聚焦「AI 作歌」与「AI 唱歌」两大核心功能的实际体验，记录真实使用过程中发现的亮点、问题，并给出对应的优化思路。</p>
     <div class="meta-row">
       <div class="chip"><b>体验对象</b> · 腾讯音乐 VEMUS 未音</div>
       <div class="chip"><b>入口</b> · y.qq.com/vemus</div>
@@ -190,13 +190,12 @@
   <section style="padding:40px 0 30px;">
     <div class="toc">
       <a href="#s1">01 平台定位</a>
-      <a href="#s2">02 体验流程</a>
-      <a href="#s3">03 AI 作歌实测</a>
-      <a href="#s4">04 AI 唱歌实测</a>
-      <a href="#s5">05 优点</a>
-      <a href="#s6">06 局限</a>
-      <a href="#s7">07 综合评分</a>
-      <a href="#s8">08 建议</a>
+      <a href="#s2">02 AI 作歌实测</a>
+      <a href="#s3">03 AI 唱歌实测</a>
+      <a href="#s4">04 优点</a>
+      <a href="#s5">05 局限</a>
+      <a href="#s6">06 综合评分</a>
+      <a href="#s7">07 建议</a>
     </div>
   </section>
 
@@ -204,7 +203,7 @@
   <section id="s1">
     <div class="sec-tag">Section 01</div>
     <h2>平台定位与核心能力</h2>
-    <p class="sec-lead">VEMUS 未音由广州酷狗计算机科技有限公司（腾讯音乐旗下）开发，于 2025-12-23 开启全网内测，定位为「一站式 AI 音乐创作发行平台」，主打 <b>听歌 / 作歌 / 唱歌</b> 三大音乐日常。</p>
+    <p class="sec-lead">VEMUS 未音定位为「一站式 AI 音乐创作发行平台」，主打 <b>听歌 / 作歌 / 唱歌</b> 三大音乐日常。</p>
 
     <div class="grid c2">
       <div class="card">
@@ -233,7 +232,7 @@
     <ul>
       <li><b>🎧 百万首 AI 歌曲库</b>：免费无限畅听、无广告、全风格覆盖。</li>
       <li><b>🎹 AI 作歌</b>：对话作歌 / 灵感歌词作歌 / 图片作歌。</li>
-      <li><b>🎤 AI 唱歌</b>：用自身音色唱热歌，秒变「专业歌手」，一键分享朋友圈。</li>
+      <li><b>🎤 AI 唱歌</b>：用自身音色唱热歌，一键分享朋友圈。</li>
     </ul>
 
     <div class="callout">
@@ -242,25 +241,10 @@
     </div>
   </section>
 
-  <!-- ============ 02 体验流程 ============ -->
+  <!-- ============ 02 AI 作歌实测（核心） ============ -->
   <section id="s2">
-    <div class="sec-tag">Section 02</div>
-    <h2>沉浸式体验流程（模拟用户路径）</h2>
-    <p class="sec-lead">从注册到社区涨粉，未音构建了一条完整的「创作—发行—变现」闭环路径。</p>
-    <div class="flow">
-      <div class="step"><span class="n">1</span><h5>注册登录</h5><p>新人送积分（免费额度），可对话 / 上传图片开始创作</p></div>
-      <div class="step"><span class="n">2</span><h5>灵感沉淀</h5><p>在「音乐灵感画布」记录歌词碎片、曲风关键词</p></div>
-      <div class="step"><span class="n">3</span><h5>AI 生成</h5><p>选对话/灵感/填词/图片模式，几秒~30秒生成完整作品</p></div>
-      <div class="step"><span class="n">4</span><h5>后期精修</h5><p>母带、分轨、MIDI/曲谱，或 Remix 换风格/换声线</p></div>
-      <div class="step"><span class="n">5</span><h5>发行分享</h5><p>一键发 5 大平台；或用自音色翻唱热歌分享社交</p></div>
-      <div class="step"><span class="n">6</span><h5>社区互动</h5><p>发布作品、二创接龙、排行榜涨粉，会员可商用变现</p></div>
-    </div>
-  </section>
-
-  <!-- ============ 03 AI 作歌实测 ============ -->
-  <section id="s3">
-    <div class="sec-tag">Section 03</div>
-    <h2>AI 作歌功能实测：世界杯场景</h2>
+    <div class="sec-tag">Section 02 · 核心实测</div>
+    <h2>AI 作歌功能实测</h2>
 
     <div class="scenario-box">
       <div class="who">体验场景</div>
@@ -271,9 +255,9 @@
 
     <h3>🌟 亮点分析</h3>
     <ul>
-      <li><b>极简交互</b>：对话框式灵感输入，先生成歌词再进入作曲，节奏顺畅、零门槛。</li>
-      <li><b>风格选择惊艳</b>：提供热血华语流行、流行摇滚、史诗体育摇滚等曲风，且每种都附有通俗描述，音乐小白也能精准选中最想要的一款。</li>
-      <li><b>双音色交付</b>：生成完成后系统输出两个 MP4 文件，由两种不同音色演绎同一首歌，用户可凭喜好挑选下载，既贴心又实用。</li>
+      <li><b>极简交互</b>：对话框式灵感输入，先生成歌词再进入作曲，整个流程走下来比较顺。</li>
+      <li><b>风格选择丰富</b>：提供热血华语流行、流行摇滚、史诗体育摇滚等曲风，且每种都附有通俗描述，不懂乐理也能选到合适的。</li>
+      <li><b>双音色交付</b>：生成完成后系统输出两个 MP4 文件，由两种不同音色演绎同一首歌，用户可凭喜好挑选下载。</li>
     </ul>
 
     <h3>⚠️ 问题诊断</h3>
@@ -285,28 +269,28 @@
     <h3>💡 优化方案</h3>
     <ul>
       <li><b>指令敏感度</b>：歌词修改环节引入「<b>微调</b>」与「<b>重写</b>」两种模式——微调仅局部润色指定词句，不强行替换整句；重写允许更大范围改写。增加「风格强度」滑块（如明星浓度、地域色彩），并以数值控制元素占比。历史对话可做语义权重标记，使新指令更自然融合上下文。</li>
-      <li><b>付费节点</b>：将代币消耗提示前置至生成歌词之前，或在起始页标注完整流程所需代币总数。更优做法是提供「<b>试听片段</b>」功能——先免费生成 30 秒副歌样章，确认满意后再付费解锁完整歌曲，既降决策门槛也提升付费意愿。</li>
+      <li><b>付费节点</b>：将代币消耗提示前置至生成歌词之前，或在起始页标注完整流程所需代币总数。更优做法是提供「<b>试听片段</b>」功能——先免费生成 30 秒副歌样章，确认满意后再付费解锁完整歌曲，这样用户花钱花得明白。</li>
     </ul>
   </section>
 
-  <!-- ============ 04 AI 唱歌实测 ============ -->
-  <section id="s4">
-    <div class="sec-tag">Section 04</div>
-    <h2>AI 唱歌功能实测 ⭐ 核心章节</h2>
+  <!-- ============ 03 AI 唱歌实测（核心） ============ -->
+  <section id="s3">
+    <div class="sec-tag">Section 03 · 核心实测</div>
+    <h2>AI 唱歌功能实测</h2>
 
     <!-- ===== 场景（PDF Page 2） ===== -->
     <h3>🎤 01 · 用户使用场景</h3>
  
     <div class="img-showcase">
       <div class="img-row">
-        <div class="img-wrap"><img src="vemus_report_assets/p2_0.png" alt="AI唱首页-导航栏/歌曲列表/音色选择"></div>
+        <div class="img-wrap"><img src="vemus_report_assets/p2_0_1.png" alt="AI唱首页-导航栏/歌曲列表/音色选择"></div>
       </div>
       <p class="img-caption">未音「AI 唱」功能首页：写歌/唱歌双 Tab 切换 · 我的音色管理 · 待选择歌曲 · 歌曲列表网格展示</p>
     </div>
 
     <ul>
       <li><b>好奇驱动</b>：个人音色与不同歌曲碰撞，听自己「唱」出任何风格。</li>
-      <li><b>热门歌曲一键跟唱</b>：用自音色翻唱热歌，秒变专业歌手。</li>
+      <li><b>热门歌曲一键跟唱</b>：用自音色翻唱热歌，效果还挺像那么回事。</li>
       <li><b>社交互动</b>：搞怪配音挑战等趣味玩法。</li>
       <li><b>自媒体配乐</b>：快速生成个性化 BGM（如「OMG 你吓到我了～～」）。</li>
       <li><b>无痛跨越语言/方言障碍</b>：以熟悉音色演绎外语或方言歌曲。</li>
@@ -317,28 +301,14 @@
  
     <div class="img-showcase">
       <div class="img-row">
-        <div class="img-wrap"><img src="vemus_report_assets/p4_2.png" alt="二级页面试听-热搜榜/情歌榜"></div>
-        <div class="img-wrap"><img src="vemus_report_assets/p6_1.png" alt="AI唱主页-综合/热歌/挑战"></div>
+        <div class="img-wrap"><img src="vemus_report_assets/p3_0_1.png" alt="二级页面试听-热搜榜/情歌榜"></div>
       </div>
       <p class="img-caption">左：二级页面「猜你喜欢」热搜榜 / 情歌榜，每首歌曲均配有试听和 AI 唱入口<br>右：一级页面综合推荐区，含人名榜 / 热歌 / 挑战大头针高音等分类</p>
     </div>
 
     <div class="callout">
       <div class="t">核心亮点：3 秒内快速听到自己克隆音色的演唱效果 💜</div>
-      <p>低体验成本带来高体验感受。用户进入二级页即可快速预览 AI 唱效果，大幅缩短决策链路。建议在一级页面推荐曲目上也增设一键试唱入口。</p>
-    </div>
-
-    <div class="grid c2">
-      <div class="card">
-        <div class="ic">⚡</div>
-        <h4>3 秒快速试唱</h4>
-        <p>二级页面试听功能，3 秒内即可听到克隆音色与歌曲高潮/副歌的融合效果。</p>
-      </div>
-      <div class="card">
-        <div class="ic">🧭</div>
-        <h4>清晰的功能分区</h4>
-        <p>导航栏（写歌/唱歌）、我的音色选择、待选择歌曲、歌曲列表模块层次分明。</p>
-      </div>
+      <p>不用进入制作流程就能先听到效果，试错成本很低，用户更容易决定要不要继续。</p>
     </div>
 
     <!-- ===== 问题 A（PDF Page 4） ===== -->
@@ -346,7 +316,7 @@
 
     <div class="img-showcase">
       <div class="img-row">
-        <div class="img-wrap"><img src="vemus_report_assets/p5_0.png" alt="问题页-跳转断点"></div>
+        <div class="img-wrap"><img src="vemus_report_assets/p5_0_1.png" alt="问题页-跳转断点"></div>
       </div>
       <p class="img-caption">问题页设计示意：用户点击「AI 唱制作」后无自动跳转反馈，需手动返回确认</p>
     </div>
@@ -360,7 +330,7 @@
 
     <div class="img-showcase">
       <div class="img-row">
-        <div class="img-wrap"><img src="vemus_report_assets/p7_0.png" alt="方案页-弹窗提示"></div>
+        <div class="img-wrap"><img src="vemus_report_assets/p7_0_1.png" alt="方案页-弹窗提示"></div>
       </div>
       <p class="img-caption">方案设计：点击制作后弹出引导弹窗 —— 「所选歌曲已进入生成队列… 返回 AI 唱 / 继续添加歌曲」</p>
     </div>
@@ -374,7 +344,7 @@
 
     <div class="img-showcase">
       <div class="img-row">
-        <div class="img-wrap"><img src="vemus_report_assets/p8_2.png" alt="导航问题-默认公开"></div>
+        <div class="img-wrap"><img src="vemus_report_assets/p8_2_1.png" alt="导航问题-默认公开"></div>
       </div>
       <p class="img-caption">当前问题：导航类目较少较散，缺少精准对应用户的个性化推荐；且生成后默认公开</p>
     </div>
@@ -397,14 +367,14 @@
          · #收藏歌单 #猜你喜欢<br><br>
          <b>公开策略</b>：生成后增设询问弹窗（公开 or 私密）/ 设置草稿箱；设为公开后可进一步提示「分享至站外平台可获得推流」。
       </p>
-    </ul>
+    </div>
   </section>
 
-  <!-- ============ 05 优点 ============ -->
-  <section id="s5">
-    <div class="sec-tag">Section 05</div>
+  <!-- ============ 04 优点 ============ -->
+  <section id="s4">
+    <div class="sec-tag">Section 04</div>
     <h2>优点（Pros）</h2>
-    <p class="sec-lead">核心优势集中在中文专精、生态闭环、零门槛与高性价比四个维度。</p>
+    <p class="sec-lead">实际体验下来，优势主要体现在中文歌词质量、腾讯发行渠道、上手门槛和价格这几个方面。</p>
     <div class="grid c2">
       <div class="card">
         <div class="ic">🇨🇳</div>
@@ -419,19 +389,19 @@
       <div class="card">
         <div class="ic">⚡</div>
         <h4>零门槛 + 快速出歌</h4>
-        <p>对话/图片即生成完整词曲编唱，几秒~30秒，44.1kHz 商业标准。</p>
+        <p>对话/图片即生成完整词曲编唱，商业标准音质。</p>
       </div>
       <div class="card">
         <div class="ic">💰</div>
         <h4>超高性价比</h4>
-        <p>免费+积分制；会员 49元/月起，远低于 Suno($10)/Udio($30)。</p>
+        <p>免费+积分制；价格远低于 Suno/Udio等竞品。</p>
       </div>
     </div>
   </section>
 
-  <!-- ============ 06 局限 ============ -->
-  <section id="s6">
-    <div class="sec-tag">Section 06</div>
+  <!-- ============ 05 局限 ============ -->
+  <section id="s5">
+    <div class="sec-tag">Section 05</div>
     <h2>缺点 / 局限（Cons）</h2>
     <div class="tbl-wrap">
       <table>
@@ -450,25 +420,26 @@
     </div>
   </section>
 
-  <!-- ============ 07 综合评分 ============ -->
-  <section id="s7">
-    <div class="sec-tag">Section 07</div>
+  <!-- ============ 06 综合评分 ============ -->
+  <section id="s6">
+    <div class="sec-tag">Section 06</div>
     <h2>综合评分</h2>
     <div class="scores">
-      <div class="score"><span class="lab">易用性</span><span class="bar"><i style="width:100%"></i></span><span class="val">★★★★★</span></div>
-      <div class="score"><span class="lab">中文歌词 / 音质</span><span class="bar"><i style="width:95%"></i></span><span class="val">★★★★☆</span></div>
+      <div class="score"><span class="lab">易用性</span><span class="bar"><i style="width:85%"></i></span><span class="val">★★★★☆</span></div>
+      <div class="score"><span class="lab">中文歌词 / 音质</span><span class="bar"><i style="width:100%"></i></span><span class="val">★★★★★</span></div>
       <div class="score"><span class="lab">生态与性价比</span><span class="bar"><i style="width:100%"></i></span><span class="val">★★★★★</span></div>
-      <div class="score"><span class="lab">功能完整度</span><span class="bar"><i style="width:78%"></i></span><span class="val">★★★★☆</span></div>
+      <div class="score"><span class="lab">功能完整度</span><span class="bar"><i style="width:70%"></i></span><span class="val">★★★☆☆</span></div>
+      <div class="score"><span class="lab">版权问题</span><span class="bar"><i style="width:70%"></i></span><span class="val">★★★☆☆</span></div>
     </div>
     <div class="callout">
       <div class="t">总体印象</div>
-      <p>VEMUS 未音是目前国内体验最顺滑的 AI 音乐一站式平台，尤其在「中文歌词 + 腾讯发行闭环」上形成护城河。短板：桌面端缺失、英文/古典偏弱、版权透明度待提升。<b style="color:var(--brand-deep)">AI 唱歌功能（PDF 核心内容）是差异化亮点，但跳转链路、导航推荐、公开策略三项需优先优化。</b></p>
+      <p>VEMUS 未音在中文歌词质量和腾讯系发行渠道上有明显优势，但桌面端缺失、英文/古典偏弱、版权透明度待提升。<b style="color:var(--brand-deep)">AI 唱歌是差异化亮点，但跳转链路、导航推荐、公开策略三项需优先优化。</b></p>
     </div>
   </section>
 
-  <!-- ============ 08 建议 ============ -->
-  <section id="s8">
-    <div class="sec-tag">Section 08</div>
+  <!-- ============ 07 建议 ============ -->
+  <section id="s7">
+    <div class="sec-tag">Section 07</div>
     <h2>体验建议</h2>
     <div class="grid c2">
       <div class="card">
@@ -479,7 +450,7 @@
       <div class="card">
         <div class="ic">🎛️</div>
         <h4>风格实验</h4>
-        <p>想玩风格实验：用 Remix 把抒情改电音、男声改女声，可玩性极高。</p>
+        <p>想玩风格实验：用 Remix 把抒情改电音、男声改女声，玩起来确实上头。</p>
       </div>
       <div class="card">
         <div class="ic">💿</div>
@@ -489,12 +460,12 @@
       <div class="card">
         <div class="ic">⚖️</div>
         <h4>合规提醒</h4>
-        <p>电脑端建议用手机或模拟器获得完整体验；商用前务必查阅最新《用户协议》确认版权与分成。</p>
+        <p>商用前务必查阅最新《用户协议》确认版权与分成。</p>
       </div>
     </div>
     <div class="callout">
       <div class="t">价值判断</div>
-      <p>未音以极简交互降低了音乐创作的门槛，让每个人都能轻松拥有个性化歌曲，氛围感与趣味性都很不错。若能优化指令理解精度、付费透明度（作歌侧），以及补全跳转链路、个性化导航与公开策略（唱歌侧），产品将更具竞争力，成为日常情绪表达与节日仪式感的有力载体。</p>
+      <p>未音的交互门槛确实低，随便聊两句就能出一首歌，玩起来挺有意思。但目前作歌侧的指令理解和付费提示、唱歌侧的跳转链路和导航推荐都还有明显改进空间，这几块改好了，日常用起来会更顺手。</p>
     </div>
   </section>
 </div>
